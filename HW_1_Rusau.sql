@@ -1,3 +1,5 @@
+HOMEWORK_1_RUSAU (MySQL)
+
 show databases;
 use hogwarts;
 
