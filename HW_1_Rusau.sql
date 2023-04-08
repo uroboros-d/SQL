@@ -4,78 +4,94 @@ show databases;
 use hogwarts;
 
 -- 1. Выведите имя, фамилию, патронуса всех персонажей, у которых есть patronus и он известен
+-- select fname, lname, patronus of characters who have a patronus and they is known
 
 select fname, lname, patronus
 from characters
 where patronus <> 'Unknown';
 
 -- 2. Выведите фамилию персонажей, у которых последняя буква в фамилии ‘e’
+-- select fname of characters whose lname ends with the letter 'e'
 
 select lname
 from characters
 where lname like '%e';
 
--- 3. Посчитайте общий возраст всех персонажей и выведите это на экран
+-- 3. Посчитайте общий возраст всех персонажей
+-- count the age of all characters
 
 select sum(age) from characters;
 
 -- 4. Выведите имя, фамилию и возраст персонажей по убыванию их возраста
+-- select fname, lname and age of all characters in descending order of their age
 
 select fname, lname, age
 from characters
 order by age desc;
 
 -- 5. Выведите имя персонажа и возраст, у которых последний находится в диапазоне от 50 до 100 лет
+-- select fname, age of characters whose age are in [50-100]
 
 select fname, age
 from characters
 where age between 50 and 100;
 
 -- 6. Выведите возраст всех персонажей так, чтобы среди них не было тех, у кого он одинаковый
+-- select unique ages of all cgaracters
 
 select distinct age from characters;
 
 -- 7. Выведите всю информацию о персонажах, у которых faculty = Gryffindor и чей возраст больше 30 лет
+-- select everything about characters whose faculty = Gryffindor and age > 30
 
 select *
 from characters
 where faculty = 'Gryffindor' and age > 30;
 
--- 8. Выведите имена первых трех факультетов из таблицы, так чтобы факультеты не повторялись
+-- 8. Выведите названия первых трех факультетов из таблицы, так чтобы факультеты не повторялись
+-- select names of the first three faculties, the names must not be repeated
 
 select distinct faculty
 from characters limit 3; 
 
--- 9. Выведите имена всех персонажей, у которых имяначинается с ‘H’ и состоит из 5 букв, 
+-- 9. Выведите имена всех персонажей, у которых имя начинается с ‘H’ и состоит из 5 букв, 
 -- или чье имя начинается с ‘L’
+-- select names of characters whose name starts with H and consist of 5 letters
+-- or whose name starts with L
 
 select fname
 from characters
 where fname like 'L%' or ( fname like 'H%' and length(fname) = 5);
 
 -- 10. Посчитайте средний возраст всех персонажей
+-- count the average age of all characters
 
 select avg(age) from characters;
 
 -- 11. Удалите персонажа с ID = 11
+-- delete the character with id = 11
 
 delete from characters
 where char_id = 10;
 
 -- 12. Выведите фамилию всех персонажей, которые содержат в ней букву ‘a’
+-- select lnames containing 'a' 
 
 select lname
 from characters
 where lname like '%a%';
 
--- 13. Используйте псевдоним для того, чтобы временно
--- заменить название столбца fname на Half-Blood Prince для
--- реального принца-полукровки
+-- 13. Используйте псевдоним для того, чтобы временно заменить название
+-- столбца fname на Half-Blood Prince для реального принца-полукровки
+-- use an alias to temporarily rename the column name 'fname' to
+-- Half-Blood Prince for the real half-blood prince
 
-select fname as 'Half-Blood Prince'
-from characters;
+select fname as 'Half-Blood Prince', lname
+from characters
+where fname = 'Harry' and lname = 'Potter';
 
 -- 14. Выведите id и имена всех патронусов в алфавитном порядки, при условии что они есть или известны
+-- select id and name of patronuses in alphabetical order if they exist or are known
 
 select book_id, patronus
 from characters
@@ -83,6 +99,7 @@ where patronus <> 'Unknown'
 order by patronus asc;
 
 -- 15. Используя оператор IN, выведите имя и фамилию тех персонажей, у которых фамилия Crabbe, Granger или Diggory
+
 
 select fname, lname
 from characters
