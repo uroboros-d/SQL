@@ -99,17 +99,19 @@ where patronus <> 'Unknown'
 order by patronus asc;
 
 -- 15. Используя оператор IN, выведите имя и фамилию тех персонажей, у которых фамилия Crabbe, Granger или Diggory
-
+-- using IN select fname and lname of characters whose lnames are Crabbe, Granger or Diggory
 
 select fname, lname
 from characters
 where lname in ('Crabbe', 'Granger', 'Diggory');
 
 -- 16. Выведите минимальный возраст персонажа
+-- select the minimal age of characters
 
 select min(age) from characters;
 
 -- 17. Используя оператор UNION выберите имена из таблицы characters и названия книг из таблицы library
+-- using UNION select fnames from characters and book names from library
 
 select fname from characters
 union
@@ -119,6 +121,8 @@ select * from library;
 
 -- 18. Используя оператор HAVING посчитайте количество персонажей на каждом факультете,
 -- оставив только те факультеты, где количество студентов больше 1
+-- using HAVING count the number of characters in each faculty
+-- keeping only faculties with more than 1 student
 
 select count(char_id), faculty
 from characters
@@ -135,19 +139,29 @@ having count(char_id) > 1;
 Если другая информация, то выводится Muggle
 Для сообщения используйте псевдоним Founders
 */
+-- using CASE describe the following:
+-- select fname and lname of a character and the following message:
+-- when faculty is Gryffindor display Godric
+-- when faculty is Slytherin display Salazar
+-- when faculty is Ravenclaw display Rowena
+-- when faculty is Hufflepuff display Helga
+-- else Muggle
+-- use the alias Founders
 
 select fname, lname,
 case
-	when faculty = 'Gryffindor' then 'Godric'
+    when faculty = 'Gryffindor' then 'Godric'
     when faculty = 'Slytherin' then 'Salazar'
     when faculty = 'Ravenclaw' then 'Rowena'
     when faculty = 'Hufflepuff' then 'Helga'
-	else 'Muggle'
+    else 'Muggle'
 end as Founders
 from characters;
 
 -- 20. Используя регулярное выражение найдите фамилии персонажей,
 -- которые не начинаются с букв H, L или S и выведите их
+-- using regular expression select lnames
+-- which don't start from H, L or S
 
 select lname
 from characters
