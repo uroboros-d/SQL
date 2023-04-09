@@ -1,28 +1,28 @@
 use hogwarts;
 
--- 1. Выведите имя, фамилию персонажей и название книги,
--- которая на них числится
+-- 1. Выведите имя, фамилию персонажей и название книги, которая на них числится
+-- select fnames, lnames and book_names of all characters 
 
 select characters.fname, characters.lname, library.book_name from
 characters join library
 on characters.char_id = library.char_id;
 
--- 2. Выведите имя, фамилию персонажей и название книги,
--- вне зависимости от того, есть ли у них книги или нет
+-- 2. Выведите имя, фамилию персонажей и название книги, вне зависимости от того, есть ли у них книги или нет
+-- select fnames, lnames and book_names of characters when they have books or not
 
 select characters.fname, characters.lname, library.book_name from
 characters right join library
 on characters.char_id = library.char_id;
 
--- 3. Выведите название книги и имя патронуса, вне зависимости от того,
--- есть ли информация о держателе книги в таблице или нет
+-- 3. Выведите название книги и имя патронуса, вне зависимости от того, есть ли информация о держателе книги в таблице или нет
+-- select book_name and patronus of all characters
 
 select characters.patronus, library.book_name from
 characters right join library
 on characters.char_id = library.char_id;
 
--- 4. Выведите имя, фамилию, возраст персонажей и название книги, которая на них числится,
---  при условии, что все владельцы книг должны быть старше 15 лет
+-- 4. Выведите имя, фамилию, возраст персонажей и название книги, которая на них числится, при условии, что все владельцы книг должны быть старше 15 лет
+-- select fname, lname, age and book_name
 
 select characters.fname, characters.lname, characters.age, library.book_name from
 characters join library
