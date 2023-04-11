@@ -1,8 +1,7 @@
 HOMEWORK sql-ex.ru
 exercises 1-10
 
--- 1. Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью
--- менее 500 дол.
+-- 1. Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью менее 500 дол.
 -- Find the model number, speed and hard drive capacity for all the PCs with prices below $500.
 -- Result set: model, speed, hd
 
@@ -15,8 +14,7 @@ where price < 500;
 select distinct maker from Product
 where type = 'printer';
 
--- 3. Найдите номер модели, объем памяти и размеры экранов ПК-блокнотов,
--- цена которых превышает 1000 дол.
+-- 3. Найдите номер модели, объем памяти и размеры экранов ПК-блокнотов, цена которых превышает 1000 дол.
 -- Find the model number, RAM and screen size of the laptops with prices over $1000
 
 select model, ram, screen from Laptop
@@ -42,8 +40,7 @@ Product join Laptop
 on Product.model = Laptop.model
 where Laptop.hd >= 10;
 
--- 7. Найдите номера моделей и цены всех имеющихся в продаже
--- продуктов (любого типа) производителя 'B' (латинская буква)
+-- 7. Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя 'B' (латинская буква)
 -- Get the models and prices for all commercially available products (of any type) produced by maker B
 
 select model, price from PC
