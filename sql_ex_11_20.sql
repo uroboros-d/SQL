@@ -35,25 +35,26 @@ select hd from PC
 group by hd
 having count(hd) > 1;
 
--- 16. Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только один раз, т.е. (i,j), но не (j,i), Порядок вывода: модель с большим номером, модель с меньшим номером, скорость и RAM
--- Get pairs of PC models with identical speeds and the same RAM capacity. Each resulting pair should be displayed only once, i.e. (i, j) but not (j, i). Result set: model with the bigger number, model with the smaller number, speed, and RAM
+-- 16. Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только один раз,
+-- т.е. (i,j), но не (j,i), Порядок вывода: модель с большим номером, модель с меньшим номером, скорость и RAM
+-- Get pairs of PC models with identical speeds and the same RAM capacity. Each resulting pair should be displayed only once,
+-- i.e. (i, j) but not (j, i). Result set: model with the bigger number, model with the smaller number, speed, and RAM
 
 select distinct A.model, B.model, A.speed, A.ram
 from PC as A, PC as B
 where A.speed = B.speed and A.ram = B.ram
 and A.model > B.model;
 
--- 17. Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК.
--- Вывести: type, model, speed
--- Get the laptop models that have a speed smaller than the speed of any PC.
--- Result set: type, model, speed
+-- 17. Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК. Вывести: type, model, speed
+-- Get the laptop models that have a speed smaller than the speed of any PC. Result set: type, model, speed
 
 select distinct Product.type, Product.model, Laptop.speed from
 Product join Laptop
 on Product.model = Laptop.model
 where Laptop.speed < all (select speed from PC);
 
--- 18. Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price-- Find the makers of the cheapest color printers. Result set: maker, price
+-- 18. Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price
+-- Find the makers of the cheapest color printers. Result set: maker, price
 
 select distinct Product.maker, Printer.price from
 Product join Printer
@@ -71,7 +72,8 @@ Product join Laptop
 on Product.model = Laptop.model
 group by maker;
 
--- 20. Найдите производителей, выпускающих по меньшей мере три различных модели ПК. -- Вывести: Maker, число моделей ПК
+-- 20. Найдите производителей, выпускающих по меньшей мере три различных модели ПК.
+-- Вывести: Maker, число моделей ПК
 -- Find the makers producing at least three distinct models of PCs.
 -- Result set: maker, number of PC models
 
