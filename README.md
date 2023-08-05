@@ -1,1 +1,1 @@
-Homework from Rsendzov's, Rusau's courses, sql-ex.ru
+Homework from ksendzov's, Rusau's courses, sql-ex.ru
