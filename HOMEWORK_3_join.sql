@@ -3,21 +3,21 @@ HOMEWORK_3
 
 -- 1. select all employees whose salaries are in the database, with their salaries
 
-select Employees.employee_name, Salary_1.monthly_salary 
-from Employees join Employee_salary_1
-on Employees.id = Employee_salary_1.employee_id
-join Salary_1
-on Salary_1.id = Employee_salary_1.salary_id;
+select e.employee_name, s.monthly_salary 
+from Employees e join Employee_salary es
+on e.id = es.employee_id
+join Salary s
+on s.id = es.salary_id;
 
 
 -- 2. select all employees whose salaries are less than 2000
 
-select Employees.employee_name, Salary_1.monthly_salary
-from Employees join employee_salary_1
-on Employees.id = Employee_salary_1.employee_id 
-join Salary_1 
-on Salary_1.id = Employee_salary_1.salary_id
-where Salary_1.monthly_salary < 2000;
+select e.employee_name, s.monthly_salary
+from Employees e join employee_salary es
+on e.id = es.employee_id 
+join Salary s 
+on s.id = es.salary_id
+where s.monthly_salary < 2000;
 
 
 -- 3. select all salaries which no one gets
@@ -28,8 +28,8 @@ where Salary_1.id not in (select salary_id from Employee_salary_1);
 
 -- 4. select all salaries < 2000 which no one gets ()
 
-select monthly_salary from Salary_1 
-where monthly_salary < 2000 and Salary_1.id not in (select salary_id from Employee_salary_1);
+select monthly_salary from Salary 
+where monthly_salary < 2000 and id not in (select salary_id from Employee_salary);
 
 
 -- 5. select all employees who haven't got their salary
@@ -40,51 +40,51 @@ where Employees.id not in (select employee_id from Employee_salary_1);
 
 -- 6. select all employees with their positions
 
-select Employees.employee_name, Roles_1.role_name
-from Employees join Roles_employee
-on Employees.id = Roles_employee.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id;
+select e.employee_name, r.role_name
+from Employees e join Roles_employee re
+on e.id = re.employee_id
+join Roles r
+on r.id = re.role_id;
 
 
 -- 7. select names and positions of Java developers
 
-select Employees.employee_name, Roles_1.role_name 
-from Employees join Roles_employee
-on Employees.id = Roles_employee.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like '%Java developer';
+select e.employee_name, r.role_name 
+from Employees e join Roles_employee re
+on e.id = re.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like '%Java developer';
 
 
 -- 8. select names and positions of Python developers
 
-select Employees.employee_name, Roles_1.role_name 
-from Employees join Roles_employee
-on Employees.id = Roles_employee.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like '%Python%';
+select e.employee_name, r.role_name 
+from Employees e join Roles_employee re
+on e.id = re.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like '%Python developer';
 
 
 -- 9. select names and positions of QA engineers
 
-select Employees.employee_name, Roles_1.role_name 
-from Employees join Roles_employee
-on Employees.id = Roles_employee.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like '%QA%';
+select e.employee_name, r.role_name 
+from Employees e join Roles_employee re
+on e.id = re.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like '%QA engineer';
 
 
 -- 10. select names and positions of Manual QA engineers
 
-select Employees.employee_name, Roles_1.role_name 
-from Employees join Roles_employee
-on Employees.id = Roles_employee.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like '%Manual QA%';
+select e.employee_name, r.role_name 
+from Employees e join Roles_employee re
+on e.id = re.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like '%Manual QA%';
 
 
 -- 11. select names and positions of Automation QA engineers
