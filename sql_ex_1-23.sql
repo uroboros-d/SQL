@@ -157,3 +157,37 @@ select maker, count(model) from Product
 where type = 'PC'
 group by maker
 having count(model) >=3;
+
+-- 21. Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.
+-- Вывести: maker, максимальная цена.
+-- Find out the maximum PC price for each maker having models in the PC table. 
+-- Result set: maker, maximum price
+
+select Product.maker, max(PC.price) from
+Product join PC
+on Product.model = PC.model
+group by maker
+
+-- 22. Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью.
+-- Вывести: speed, средняя цена.
+-- For each value of PC speed that exceeds 600 MHz, find out the average price of PCs with identical speeds.
+-- Result set: speed, average price.
+
+Select speed, avg(price) from PC
+group by speed
+having speed > 600
+
+-- 23. Найдите производителей, которые производили бы как ПК со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
+-- Вывести: Maker
+-- Get the makers producing both PCs having a speed of 750 MHz or higher and laptops with a speed of 750 MHz or higher.
+-- Result set: maker
+
+Select Product.maker from
+Product join PC
+on Product.model=PC.model
+where PC.speed>=750
+intersect
+select Product.maker from
+Product join Laptop
+on Product.model=Laptop.model
+where Laptop.speed>=750
