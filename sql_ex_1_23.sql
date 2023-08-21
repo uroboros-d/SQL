@@ -1,5 +1,5 @@
 HOMEWORK sql-ex.ru
-exercises 1-10
+exercises 1-23
 
 -- 1. Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью менее 500 дол.
 -- Find the model number, speed and hard drive capacity for all the PCs with prices below $500.
