@@ -89,147 +89,147 @@ where r.role_name like '%Manual QA%';
 
 -- 11. select names and positions of Automation QA engineers
 
-select Employees.employee_name, Roles_1.role_name 
-from Employees join Roles_employee
-on Employees.id = Roles_employee.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like '%Automation%engineer%';
+select e.employee_name, r.role_name 
+from Employees e join Roles_employee re
+on e.id = re.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like '%Automation QA engineer';
 
 
 -- 12. select names and salaries of Juniors
 
-select Employees.employee_name, Salary_1.monthly_salary, Roles_1.role_name
-from Employee_salary_1
-join Employees
-on Employee_salary_1.employee_id = Employees.id 
-join Salary_1
-on Salary_1.id = Employee_salary_1.salary_id
-join Roles_employee
-on Roles_employee.employee_id = Employees.id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like 'Junior%'
+select e.employee_name, s.monthly_salary, r.role_name
+from Employee_salary es
+join Employees e
+on es.employee_id = e.id 
+join Salary s
+on s.id = es.salary_id
+join Roles_employee re
+on re.employee_id = e.id
+join Roles r
+on r.id = re.role_id
+where r.role_name like 'Junior%'
 
 
 -- 13. select names and salaries of Middles
 
-select Employees.employee_name, Salary_1.monthly_salary, Roles_1.role_name
-from Employee_salary_1
-join Employees
-on Employee_salary_1.employee_id = Employees.id
-join Salary_1 
-on Employee_salary_1.salary_id = Salary_1.id
-join Roles_employee 
-on Roles_employee.employee_id = Employees.id 
-join Roles_1 
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like 'Middle%'
+select e.employee_name, s.monthly_salary, r.role_name
+from Employee_salary es
+join Employees e
+on es.employee_id = e.id
+join Salary s
+on es.salary_id = s.id
+join Roles_employee re
+on re.employee_id = e.id 
+join Roles r 
+on r.id = re.role_id
+where r.role_name like 'Middle%'
 
 
 -- 14. select names and salaries of Seniors
 
-select Employees.employee_name, Salary_1.monthly_salary, Roles_1.role_name
-from employees 
-join Employee_salary_1 
-on Employees.id = Employee_salary_1.employee_id 
-join Salary_1 
-on Salary_1.id = Employee_salary_1.salary_id 
-join Roles_employee 
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1 
-on Roles_1.id = Roles_employee.role_id 
-where Roles_1.role_name like 'Senior%';
+select e.employee_name, s.monthly_salary, r.role_name
+from employees e
+join Employee_salary es 
+on e.id = es.employee_id 
+join Salary s 
+on s.id = es.salary_id 
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r 
+on r.id = re.role_id 
+where r.role_name like 'Senior%';
 
 
 -- 15. select salaries of Java developers
 
-select Salary_1.monthly_salary, Roles_1.role_name
-from employees 
-join Employee_salary_1 
-on Employees.id = Employee_salary_1.employee_id 
-join Salary_1 
-on Salary_1.id = Employee_salary_1.salary_id 
-join Roles_employee 
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1 
-on Roles_1.id = Roles_employee.role_id 
-where Roles_1.role_name like '%Java developer';
+select s.monthly_salary, r.role_name
+from employees e
+join Employee_salary es 
+on e.id = es.employee_id 
+join Salary s 
+on s.id = es.salary_id 
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r 
+on r.id = re.role_id 
+where r.role_name like '%Java developer';
 
 
 -- 16. select salaries of Python developers
 
-select Salary_1.monthly_salary, Roles_1.role_name
-from employees 
-join Employee_salary_1 
-on Employees.id = Employee_salary_1.employee_id 
-join Salary_1 
-on Salary_1.id = Employee_salary_1.salary_id 
-join Roles_employee 
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1 
-on Roles_1.id = Roles_employee.role_id 
-where Roles_1.role_name like '%Python%';
+select s.monthly_salary, r.role_name
+from employees e
+join Employee_salary es 
+on e.id = es.employee_id 
+join Salary s 
+on s.id = es.salary_id 
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r 
+on r.id = re.role_id 
+where r.role_name like '%Python developer';
 
 
 -- 17. select names and salaries of Junior Python developers
 
-select Employees.employee_name, Salary_1.monthly_salary, Roles_1.role_name
-from employees 
-join Employee_salary_1 
-on Employees.id = Employee_salary_1.employee_id 
-join Salary_1 
-on Salary_1.id = Employee_salary_1.salary_id 
-join Roles_employee 
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1 
-on Roles_1.id = Roles_employee.role_id 
-where Roles_1.role_name like 'Junior Python%';
+select e.employee_name, s.monthly_salary, r.role_name
+from employees e
+join Employee_salary es 
+on e.id = es.employee_id 
+join Salary s 
+on s.id = es.salary_id 
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r 
+on r.id = re.role_id 
+where r.role_name like 'Junior Python developer';
 
 
--- 18. select names and salaries of Middle Javascript developers
+-- 18. select names and salaries of Middle JavaScript developers
 
-select Employees.employee_name, Salary_1.monthly_salary, Roles_1.role_name
-from employees 
-join Employee_salary_1 
-on Employees.id = Employee_salary_1.employee_id 
-join Salary_1 
-on Salary_1.id = Employee_salary_1.salary_id 
-join Roles_employee 
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1 
-on Roles_1.id = Roles_employee.role_id 
-where Roles_1.role_name like 'Middle JavaScript%';
+select e.employee_name, s.monthly_salary, r.role_name
+from employees e
+join Employee_salary es
+on e.id = es.employee_id 
+join Salary s 
+on s.id = es.salary_id 
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r 
+on r.id = re.role_id 
+where r.role_name like 'Middle JavaScript%';
 
 
 -- 19. select names and salaries of Senior Java developers
 
-select Employees.employee_name, Salary_1.monthly_salary, Roles_1.role_name
-from employees 
-join Employee_salary_1 
-on Employees.id = Employee_salary_1.employee_id 
-join Salary_1 
-on Salary_1.id = Employee_salary_1.salary_id 
-join Roles_employee 
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1 
-on Roles_1.id = Roles_employee.role_id 
-where Roles_1.role_name like 'Senior Java developer';
+select e.employee_name, s.monthly_salary, r.role_name
+from employees e
+join Employee_salary es
+on e.id = es.employee_id 
+join Salary s
+on s.id = es.salary_id 
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r
+on r.id = re.role_id 
+where r.role_name like 'Senior Java developer';
 
 
 -- 20. select salaries of Junior QA engineers
 
-select Salary_1.monthly_salary, Roles_1.role_name
-from employees 
-join Employee_salary_1 
-on Employees.id = Employee_salary_1.employee_id 
-join Salary_1 
-on Salary_1.id = Employee_salary_1.salary_id 
-join Roles_employee 
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1 
-on Roles_1.id = Roles_employee.role_id 
-where Roles_1.role_name like 'Junior%QA%';
+select s.monthly_salary, r.role_name
+from employees e
+join Employee_salary es
+on e.id = es.employee_id 
+join Salary s
+on s.id = es.salary_id 
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r
+on r.id = re.role_id 
+where r.role_name like 'Junior%QA engineer';
 
 
 -- 21. select the average salary of all Juniors
