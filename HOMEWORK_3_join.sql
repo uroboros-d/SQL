@@ -234,160 +234,160 @@ where r.role_name like 'Junior%QA engineer';
 
 -- 21. select the average salary of all Juniors
 
-select avg(Salary_1.monthly_salary) as avg_salary_juniors
-from Employee_salary_1
-join Salary_1
-on Employee_salary_1.salary_id = Salary_1.id 
-join Roles_employee
-on Employee_salary_1.employee_id = Roles_employee.employee_id 
-join Roles_1
-on Roles_employee.role_id = Roles_1.id 
-where Roles_1.role_name like 'Junior%'
+select AVG(s.monthly_salary)
+from Employee_salary es
+join Salary s
+on es.salary_id = s.id 
+join Roles_employee re
+on es.employee_id = re.employee_id 
+join Roles r
+on re.role_id = r.id 
+where r.role_name like 'Junior%'
 
 
 -- 22. select the sum of salaries of JavaScript developers
 
-select sum(Salary_1.monthly_salary) as sum_salaries_JS_dev
-from Employee_salary_1
-join Salary_1
-on Employee_salary_1.salary_id = Salary_1.id 
-join Roles_employee
-on Employee_salary_1.employee_id = Roles_employee.employee_id 
-join Roles_1
-on Roles_employee.role_id = Roles_1.id 
-where Roles_1.role_name like '%JavaScript developer'
+select SUM(s.monthly_salary)
+from Employee_salary es
+join Salary s
+on es.salary_id = s.id 
+join Roles_employee re
+on es.employee_id = re.employee_id 
+join Roles r
+on re.role_id = r.id 
+where r.role_name like '%JavaScript developer'
 
 
 -- 23. select min salary of QA engineers
 
-select min(Salary_1.monthly_salary) as min_salary_QA
-from Employee_salary_1 
-join Salary_1 
-on Employee_salary_1.salary_id = Salary_1.id
-join Roles_employee
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like '%QA%'
+select MIN(s.monthly_salary)
+from Employee_salary es 
+join Salary s
+on es.salary_id = s.id
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like '%QA%'
 
 
 -- 24. select max salary of QA engineers
 
-select max(Salary_1.monthly_salary) as max_salary_QA
-from Employee_salary_1 
-join Salary_1 
-on Employee_salary_1.salary_id = Salary_1.id
-join Roles_employee
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like '%QA%'
+select MAX(s.monthly_salary)
+from Employee_salary es
+join Salary s 
+on es.salary_id = s.id
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like '%QA%'
 
 
 -- 25. select the number of QA engineers
 
-select count(Roles_1.role_name) as count_QA
-from Employee_salary_1 
-join Roles_employee
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like '%QA%'
+select COUNT(r.role_name)
+from Employee_salary es
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like '%QA%'
 
 
 -- 26. select the number of Middle developers
 
-select count(Roles_1.role_name) as count_Middle
-from Employee_salary_1 
-join Roles_employee
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like 'Middle%'
+select COUNT(r.role_name)
+from Employee_salary es 
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like 'Middle%'
 
 
 -- 27. select the number of developers
 
-select count(Roles_1.role_name) as count_dev
-from Employee_salary_1 
-join Roles_employee
-on Roles_employee.employee_id = Employee_salary_1.employee_id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Roles_1.role_name like '%developer'
+select COUNT(r.role_name)
+from Employee_salary es 
+join Roles_employee re
+on re.employee_id = es.employee_id
+join Roles r
+on r.id = re.role_id
+where r.role_name like '%developer'
 
 
 -- 28. select the sum of salaries of all developers
 
-select sum(Salary_1.monthly_salary) as sum_salaries_dev
-from Employee_salary_1
-join Salary_1
-on Employee_salary_1.salary_id = Salary_1.id 
-join Roles_employee
-on Employee_salary_1.employee_id = Roles_employee.employee_id 
-join Roles_1
-on Roles_employee.role_id = Roles_1.id 
-where Roles_1.role_name like '%developer'
+select SUM(s.monthly_salary)
+from Employee_salary es
+join Salary s
+on es.salary_id = s.id 
+join Roles_employee re
+on es.employee_id = re.employee_id 
+join Roles r
+on re.role_id = r.id 
+where r.role_name like '%developer'
 
 
 -- 29. select names, positions and salaries of all employees in ascending order
 
-select Employees.employee_name, Roles_1.role_name, Salary_1.monthly_salary
-from Employee_salary_1
-join Employees
-on Employee_salary_1.employee_id = Employees.id 
-join Salary_1
-on Salary_1.id = Employee_salary_1.salary_id
-join Roles_employee
-on Roles_employee.employee_id = Employees.id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-order by Salary_1.monthly_salary asc
+select e.employee_name, r.role_name, s.monthly_salary
+from Employee_salary es
+join Employees e
+on es.employee_id = e.id 
+join Salary s
+on s.id = es.salary_id
+join Roles_employee re
+on re.employee_id = e.id
+join Roles r
+on r.id = re.role_id
+order by s.monthly_salary ASC
 
 
 -- 30. select names, positions and salaries of all employees with salaries in (1700-2300) in ascending order
 
-select Employees.employee_name, Roles_1.role_name, Salary_1.monthly_salary
-from Employee_salary_1
-join Employees
-on Employee_salary_1.employee_id = Employees.id 
-join Salary_1
-on Salary_1.id = Employee_salary_1.salary_id
-join Roles_employee
-on Roles_employee.employee_id = Employees.id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Salary_1.monthly_salary between 1700 and 2300
-order by Salary_1.monthly_salary asc
+select e.employee_name, r.role_name, s.monthly_salary
+from Employee_salary es
+join Employees e
+on es.employee_id = e.id 
+join Salary s
+on s.id = es.salary_id
+join Roles_employee re
+on re.employee_id = e.id
+join Roles r
+on r.id = re.role_id
+where s.monthly_salary between 1700 and 2300
+order by s.monthly_salary asc
 
 
 -- 31. select names, positions and salaries of all employees with salaries < 2300 in ascending order
 
-select Employees.employee_name, Roles_1.role_name, Salary_1.monthly_salary
-from Employee_salary_1
-join Employees
-on Employee_salary_1.employee_id = Employees.id 
-join Salary_1
-on Salary_1.id = Employee_salary_1.salary_id
-join Roles_employee
-on Roles_employee.employee_id = Employees.id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Salary_1.monthly_salary < 2300
-order by Salary_1.monthly_salary asc
+select e.employee_name, r.role_name, s.monthly_salary
+from Employee_salary es
+join Employees e
+on es.employee_id = e.id 
+join Salary s
+on s.id = es.salary_id
+join Roles_employee re
+on re.employee_id = e.id
+join Roles r
+on r.id = re.role_id
+where s.monthly_salary < 2300
+order by s.monthly_salary asc
 
 
 -- 32. select names, positions and salaries of all employees with salaries in (1100, 1500, 2000) in ascending order
 
-select Employees.employee_name, Roles_1.role_name, Salary_1.monthly_salary
-from Employee_salary_1
-join Employees
-on Employee_salary_1.employee_id = Employees.id 
-join Salary_1
-on Salary_1.id = Employee_salary_1.salary_id
-join Roles_employee
-on Roles_employee.employee_id = Employees.id
-join Roles_1
-on Roles_1.id = Roles_employee.role_id
-where Salary_1.monthly_salary in (1100, 1500, 2000)
-order by Salary_1.monthly_salary asc
+select e.employee_name, r.role_name, s.monthly_salary
+from Employee_salary es
+join Employees e
+on es.employee_id = e.id 
+join Salary s
+on s.id = es.salary_id
+join Roles_employee re
+on re.employee_id = e.id
+join Roles r
+on r.id = re.role_id
+where s.monthly_salary in (1100, 1500, 2000)
+order by s.monthly_salary asc
