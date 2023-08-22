@@ -2,7 +2,7 @@ HOMEWORK_1
 
 --Employees table
 
--- 1. create employees table with id. serial, primary key, employee_name. Varchar(50), not null
+-- 1. create employees table with id serial, primary key; employee_name Varchar(50), not null
 
 create table employees(
 	id serial primary key,
@@ -83,21 +83,19 @@ values ('Anne Hall'),
 ('Carl Castillo'),
 ('Regina Robinson');
 
-select * from employees;
-
 ----------------------------------------------------------------------------------
 
---Salary_1 table
+--Salary table
 
--- 3. create salary_1 table with id serial primary key, monthly_salary Int, not null
+-- 3. create salary table with id serial primary key; monthly_salary Int, not null
 
-create table salary_1(
+create table salary(
 	id serial primary key,
 	monthly_salary int not null);
 
 -- 4. fill the table with 15 rows
 
-insert into salary_1(monthly_salary)
+insert into salary(monthly_salary)
 values  ('1000'),
 ('1100'),
 ('1200'),
@@ -115,15 +113,13 @@ values  ('1000'),
 ('2400'),
 ('2500');
 
-select * from salary_1;
-
 -----------------------------------------------------------------------
 
---employee_salary_1 table
+--employee_salary table
 
--- 5. create employee_salary_1 table with id serial primary key, employee_id int not null unique, salary_id int not null
+-- 5. create employee_salary table with id serial primary key; employee_id int not null unique; salary_id int not null
 
-create table employee_salary_1(
+create table employee_salary(
 	id serial primary key,
 	employee_id int unique not null,
 	salary_id int not null
@@ -131,7 +127,7 @@ create table employee_salary_1(
 
 -- 6. fill the table with 40 rows (in 10 rows out of 40 insert non-existent employee_id)
 
-insert into employee_salary_1(employee_id, salary_id)
+insert into employee_salary(employee_id, salary_id)
 values	(1,1),
 		(2,2),
 		(3,3),
@@ -173,26 +169,24 @@ values	(1,1),
 		(79,9),
 		(80,10);
 		
-select * from employee_salary_1;
-
 ---------------------------------------------------------------------------
 
 --roles table
 
--- 7. create roles_1 table with id serial primary key, role_name int, not null, unique
+-- 7. create roles table with id serial primary key; role_name int, not null, unique
 
-create table roles_1(
+create table roles(
 	id serial primary key,
 	role_name int not null unique
 );
 
 -- 8. change type of column role_name from int to varchar
 
-alter table roles_1 alter column role_name type varchar(30);
+alter table roles alter column role_name type varchar(30);
 
 -- 9. fill the table with 20 rows
 
-insert into roles_1(role_name)
+insert into roles(role_name)
 values ('Junior Python developer'),
 ('Middle Python developer'),
 ('Senior Python developer'),
@@ -214,14 +208,12 @@ values ('Junior Python developer'),
 ('Middle Automation QA engineer'),
 ('Senior Automation QA engineer');
 
-select * from roles_1;
-
 ---------------------------------------------------------------------------------
 
 --roles_employee
 
--- 10. create roles_employee table with id Serial  primary key, employee_id Int, not null, unique (внешний ключ для таблицы employees, поле id)
--- role_id. Int, not null (внешний ключ для таблицы roles, поле id)
+-- 10. create roles_employee table with id Serial  primary key, employee_id Int, not null, unique (внешний ключ для таблицы employees, поле id);
+-- role_id Int, not null (внешний ключ для таблицы roles, поле id)
 
 create table roles_employee(
 	id serial primary key,
@@ -230,7 +222,7 @@ create table roles_employee(
 	foreign key (employee_id)
 		references employees(id),
 	foreign key (role_id)
-		references roles_1(id)
+		references roles(id)
 );
 
 drop table roles_employee;
@@ -278,5 +270,3 @@ values (1,1),
 (38,18),
 (39,19),
 (40,20);
-
-select * from roles_employee;
