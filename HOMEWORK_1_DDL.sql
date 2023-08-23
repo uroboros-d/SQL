@@ -12,7 +12,8 @@ create table employees(
 -- 2. fill the table with 70 rows
 
 insert into employees(employee_name)
-values ('Anne Hall'),
+values
+('Anne Hall'),
 ('Phillip Ray'),
 ('Stephanie Jensen'),
 ('Elizabeth Lambert'),
