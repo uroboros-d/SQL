@@ -96,7 +96,8 @@ create table salary(
 -- 4. fill the table with 15 rows
 
 insert into salary(monthly_salary)
-values  ('1000'),
+values  
+('1000'),
 ('1100'),
 ('1200'),
 ('1300'),
@@ -128,7 +129,7 @@ create table employee_salary(
 -- 6. fill the table with 40 rows (in 10 rows out of 40 insert non-existent employee_id)
 
 insert into employee_salary(employee_id, salary_id)
-values	(1,1),
+values		(1,1),
 		(2,2),
 		(3,3),
 		(4,4),
@@ -187,7 +188,8 @@ alter table roles alter column role_name type varchar(30);
 -- 9. fill the table with 20 rows
 
 insert into roles(role_name)
-values ('Junior Python developer'),
+values
+('Junior Python developer'),
 ('Middle Python developer'),
 ('Senior Python developer'),
 ('Junior Java developer'),
@@ -230,7 +232,8 @@ drop table roles_employee;
 -- 11. fill the table with 40 rows
 
 insert into roles_employee(employee_id, role_id)
-values (1,1),
+values
+(1,1),
 (2,2),
 (3,3),
 (4,4),
