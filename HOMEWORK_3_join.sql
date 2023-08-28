@@ -22,20 +22,26 @@ where s.monthly_salary < 2000;
 
 -- 3. select all salaries which no one gets
 
-select monthly_salary from Salary_1 
-where Salary_1.id not in (select salary_id from Employee_salary_1);
+select s.monthly_salary from 
+salary s left join employee_salary es 
+on s.id = es.salary_id
+where es.salary_id is null;
 
 
 -- 4. select all salaries < 2000 which no one gets ()
 
-select monthly_salary from Salary 
-where monthly_salary < 2000 and id not in (select salary_id from Employee_salary);
+select s.monthly_salary from 
+salary s left join employee_salary es 
+on s.id = es.salary_id
+where es.salary_id is null and s.monthly_salary < 2000;
 
 
 -- 5. select all employees who haven't got their salary
 
-select employee_name from Employees 
-where Employees.id not in (select employee_id from Employee_salary_1);
+select e.employee_name from
+employees e left join employee_salary es 
+on e.id = es.employee_id 
+where es.employee_id is null;
 
 
 -- 6. select all employees with their positions
