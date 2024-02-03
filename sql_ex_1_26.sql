@@ -191,7 +191,7 @@ having count(model) >=3;
 select Product.maker, max(PC.price) from
 Product join PC
 on Product.model = PC.model
-group by Product.maker
+group by Product.maker;
 
 -- 22. Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью.
 -- Вывести: speed, средняя цена.
@@ -201,7 +201,7 @@ group by Product.maker
 select speed, avg(price)
 from pc
 where speed > 600
-group by speed
+group by speed;
 
 -- 23. Найдите производителей, которые производили бы как ПК со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
 -- Вывести: Maker
@@ -216,7 +216,7 @@ intersect
 select Product.maker from
 Product join Laptop
 on Product.model=Laptop.model
-where Laptop.speed>=750
+where Laptop.speed>=750;
 
 -- 24. Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.
 -- List the models of any type having the highest price of all products present in the database.
@@ -234,7 +234,7 @@ where price >= ALL
   select max(price) from Laptop
   union
   select max(price) from Printer
- )
+ );
 
 -- 25. Найдите производителей принтеров, которые производят ПК с наименьшим объемом RAM и с самым быстрым процессором среди всех ПК, имеющих наименьший объем RAM.
 -- Вывести: Maker
@@ -257,5 +257,23 @@ join
 (
  select maker from Product where type = 'Printer'
 ) y
-on x.maker = y.maker
+on x.maker = y.maker;
+
+-- 26. Найдите среднюю цену ПК и ПК-блокнотов, выпущенных производителем A (латинская буква).
+-- Вывести: одна общая средняя цена.
+-- Find out the average price of PCs and laptops produced by maker A.
+-- Result set: one overall average price for all items.
+
+select avg(price) from
+(
+ select price from PC
+ where model IN (
+                 select model from Product where maker = 'A'
+	        )
+union all
+select price from Laptop
+where model IN (
+                select model from Product where maker = 'A'
+	       )
+) x;
 
