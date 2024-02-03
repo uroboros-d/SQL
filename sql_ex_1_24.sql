@@ -217,3 +217,21 @@ select Product.maker from
 Product join Laptop
 on Product.model=Laptop.model
 where Laptop.speed>=750
+
+-- 24. Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.
+-- List the models of any type having the highest price of all products present in the database.
+
+select model from
+ (select model, price from PC
+  union
+  select model, price from Laptop
+  union
+  select model, price from Printer) x
+where price >= ALL
+ (
+  select max(price) from PC
+  union
+  select max(price) from Laptop
+  union
+  select max(price) from Printer
+ )
