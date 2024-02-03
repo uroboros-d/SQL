@@ -117,6 +117,11 @@ PC join Product
 on PC.model = Product.model
 where Product.maker = 'A';
 
+Другое решение:
+
+select avg(speed) from PC
+where model in (select model from Product where maker = 'A');
+
 -- 14. Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий
 -- For the ships in the Ships table that have at least 10 guns, get the class, name, and country
 
