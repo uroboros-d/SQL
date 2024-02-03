@@ -67,7 +67,7 @@ where maker = 'B'
 union
 select Product.model, Printer.price
 from Product join Printer on Product.model = Printer.model
-where maker = 'B'
+where maker = 'B';
 
 -- 8. Найдите производителя, выпускающего ПК, но не ПК-блокноты
 -- Find the makers producing PCs but not laptops
@@ -77,6 +77,13 @@ where type = 'pc'
 except
 select maker from Product
 where type = 'laptop';
+
+Другое решение:
+
+select distinct maker from Product
+where type = 'PC' 
+and maker not in
+(select maker from Product where type = 'Laptop');
 
 -- 9. Найдите производителей ПК с процессором не менее 450 Мгц
 -- Find the makers of PCs with a processor speed of 450 MHz or more. Result set: maker
