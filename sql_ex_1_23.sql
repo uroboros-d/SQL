@@ -191,7 +191,7 @@ having count(model) >=3;
 select Product.maker, max(PC.price) from
 Product join PC
 on Product.model = PC.model
-group by maker
+group by Product.maker
 
 -- 22. Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью.
 -- Вывести: speed, средняя цена.
