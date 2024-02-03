@@ -235,3 +235,27 @@ where price >= ALL
   union
   select max(price) from Printer
  )
+
+-- 25. Найдите производителей принтеров, которые производят ПК с наименьшим объемом RAM и с самым быстрым процессором среди всех ПК, имеющих наименьший объем RAM.
+-- Вывести: Maker
+-- Find the printer makers also producing PCs with the lowest RAM capacity and the highest processor speed of all PCs having the lowest RAM capacity.
+-- Result set: maker.
+
+select distinct x.maker from
+(
+ select maker from Product
+ where model in (
+                 select model from pc
+                 where speed = (
+                               select max(speed) from pc
+                               where ram = (select min(ram) from pc)
+                               )
+                 and ram = (select min(ram) from pc)
+                )
+) x
+join
+(
+ select maker from Product where type = 'Printer'
+) y
+on x.maker = y.maker
+
