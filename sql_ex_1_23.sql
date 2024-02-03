@@ -55,6 +55,20 @@ select model, price from Printer
 where model in (select model from Product
                 where maker = 'B');
 
+Другое решение:
+
+select Product.model, PC.price
+from Product join PC on Product.model = PC.model
+where maker = 'B'
+union
+select Product.model, Laptop.price
+from Product join Laptop on Product.model = Laptop.model
+where maker = 'B'
+union
+select Product.model, Printer.price
+from Product join Printer on Product.model = Printer.model
+where maker = 'B'
+
 -- 8. Найдите производителя, выпускающего ПК, но не ПК-блокноты
 -- Find the makers producing PCs but not laptops
 
