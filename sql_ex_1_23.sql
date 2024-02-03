@@ -198,16 +198,17 @@ group by Product.maker
 -- For each value of PC speed that exceeds 600 MHz, find out the average price of PCs with identical speeds.
 -- Result set: speed, average price.
 
-Select speed, avg(price) from PC
+select speed, avg(price)
+from pc
+where speed > 600
 group by speed
-having speed > 600
 
 -- 23. Найдите производителей, которые производили бы как ПК со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
 -- Вывести: Maker
 -- Get the makers producing both PCs having a speed of 750 MHz or higher and laptops with a speed of 750 MHz or higher.
 -- Result set: maker
 
-Select Product.maker from
+select Product.maker from
 Product join PC
 on Product.model=PC.model
 where PC.speed>=750
