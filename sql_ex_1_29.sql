@@ -302,3 +302,22 @@ from (
       group by maker
       having count(maker) = 1
      ) x;
+
+-- 29. В предположении, что приход и расход денег на каждом пункте приема фиксируется не чаще одного раза в день
+-- [т.е. первичный ключ (пункт, дата)], написать запрос с выходными данными (пункт, дата, приход, расход).
+-- Использовать таблицы Income_o и Outcome_o.
+
+select Income_o.point, Income_o.date, sum(inc), sum(out) 
+from Income_o left join  Outcome_o
+on Income_o.point = Outcome_o.point
+and
+Income_o.date = Outcome_o.date
+group by Income_o.point, Income_o.date
+union
+select Outcome_o.point, Outcome_o.date, sum(inc), sum(out)
+from
+Outcome_o left join Income_o
+on Income_o.point = Outcome_o.point
+and
+Income_o.date = Outcome_o.date
+group by Outcome_o.point, Outcome_o.date
