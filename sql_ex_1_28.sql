@@ -1,6 +1,6 @@
 HOMEWORK sql-ex.ru
-exercises 1-23
 
+	
 -- 1. Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью менее 500 дол.
 -- Find the model number, speed and hard drive capacity for all the PCs with prices below $500.
 -- Result set: model, speed, hd
@@ -181,7 +181,7 @@ group by maker;
 select maker, count(model) from Product
 where type = 'PC'
 group by maker
-having count(model) >=3;
+having count(model) >= 3;
 
 -- 21. Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.
 -- Вывести: maker, максимальная цена.
@@ -222,11 +222,13 @@ where Laptop.speed>=750;
 -- List the models of any type having the highest price of all products present in the database.
 
 select model from
- (select model, price from PC
+ (
+  select model, price from PC
   union
   select model, price from Laptop
   union
-  select model, price from Printer) x
+  select model, price from Printer
+ ) x
 where price >= ALL
  (
   select max(price) from PC
@@ -277,3 +279,26 @@ where model IN (
 	       )
 ) x;
 
+-- 27. Найдите средний размер диска ПК каждого из тех производителей, которые выпускают и принтеры.
+-- Вывести: maker, средний размер HD.
+-- Find out the average hard disk drive capacity of PCs produced by makers who also manufacture printers.
+-- Result set: maker, average HDD capacity.
+
+select Product.maker, avg(hd)
+from Product join PC
+on Product.model = PC.model
+where maker IN (
+               select distinct maker from Product where type = 'Printer'
+              )
+group by Product.maker;
+
+-- 28. Используя таблицу Product, определить количество производителей, выпускающих по одной модели.
+-- Using Product table, find out the number of makers who produce only one model.
+
+select count(*)
+from (
+      select maker
+      from Product
+      group by maker
+      having count(maker) = 1
+     ) x;
