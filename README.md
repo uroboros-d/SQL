@@ -1,1 +1,1 @@
-Homework from ksendzov's, Rusau's courses, sql-ex.ru
+Домашние задания с курса и тестовые задания по SQL
